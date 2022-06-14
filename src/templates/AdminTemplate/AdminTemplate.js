@@ -36,18 +36,18 @@ const AdminTemplate = (props) => { //path, exact, Component
     // }
     const operations = <Fragment>
         {!_.isEmpty(userLogin) ? <Fragment>
-            <button onClick={() => { history.push('/profile') }}>
+            <div className="flex justify-end">
                 <div className="w-12 h-12 flex items-center justify-center text-2xl ml-5 rounded-full bg-red-200">
                     {userLogin?.taiKhoan.substr(0, 1)}
                 </div>
-                <h3 className="absolute right-56 top-0">Hello ! {userLogin?.taiKhoan}</h3>
-            </button>
+                <h3 className="absolute right-40 top-0">Hello Ajnomoto ! {userLogin?.taiKhoan}</h3>
+            </div>
             <button onClick={() => {
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN);
                 history.push('/home');
                 window.location.reload();
-            }} className="ml-3 text-blue-800">Đăng xuất</button> </Fragment> : ''}
+            }} className="ml-3 text-blue-800 absolute top-0">Đăng xuất</button> </Fragment> : ''}
     </Fragment>
     return <Route {...restProps} render={(propsRoute) => { //props.location,props.history,props.match
         return <Fragment>
@@ -85,7 +85,7 @@ const AdminTemplate = (props) => { //path, exact, Component
                             <Component {...propsRoute} />
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                    <Footer style={{ textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
             </Layout>
         </Fragment>

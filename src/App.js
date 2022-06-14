@@ -19,6 +19,7 @@ import Films from './pages/Admin/Films/Films';
 import ShowTime from './pages/Admin/Showtime/ShowTime';
 import AddNew from './pages/Admin/Films/AddNew/AddNew';
 import Edit from './pages/Admin/Films/Edit/Edit';
+import SignUpWithFormik from "./pages/Register/Register"
 export const history = createBrowserHistory();
 
 function App() {
@@ -27,13 +28,12 @@ function App() {
       <Loading />
       <Switch>
         <HomeTemplate path="/home" exact Component={Home} />
-        <HomeTemplate path="/contact" exact Component={Contact} />
-        <HomeTemplate path="/news" exact Component={News} />
+        <HomeTemplate path="/contact" exact Component={Home} />
+        <HomeTemplate path="/news" exact Component={Home} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
-        <HomeTemplate path="/profile" exact Component={Profile} />
         <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
         <UserTemplate path="/login" exact Component={Login} />
-        <UserTemplate path="/register" exact Component={Register} />
+        <UserTemplate path="/register" exact Component={SignUpWithFormik} />
         <AdminTemplate path="/admin" exact Component={Dashboard} />
         <AdminTemplate path="/admin/films" exact Component={Films} />
         <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
