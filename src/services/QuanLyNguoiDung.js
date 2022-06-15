@@ -1,9 +1,9 @@
 import { baseService } from "./baseService";
 export class QuanLyNguoiDungService extends baseService {
-    dangNhap = (thongTinDangNhap) => { // {taiKhoan:'',matKhau:''}
+    dangNhap = (thongTinDangNhap) => {
         return this.post(`/api/QuanLyNguoiDung/DangNhap`, thongTinDangNhap);
     }
-    dangKy = (thongTinDangKy) => { // {taiKhoan:'',matKhau:''}
+    dangKy = (thongTinDangKy) => { 
         return this.post(`/api/QuanLyNguoiDung/DangKy`, thongTinDangKy);
     }
     layThongTinNguoiDung = () => {
@@ -12,8 +12,10 @@ export class QuanLyNguoiDungService extends baseService {
     layDanhSachNguoiDung = () => {
         return this.get('/api/QuanLyNguoiDung/LayDanhSachNguoiDung');
     }
+    capNhatThongTinNguoiDung = (userEdit) => {
+        return this.post('/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung',userEdit);
+    }
     xoaNguoiDung = (account) => {
-        console.log(account);
         return this.delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${account}`);
     }
 }

@@ -20,6 +20,7 @@ import ShowTime from './pages/Admin/Showtime/ShowTime';
 import AddNew from './pages/Admin/Films/AddNew/AddNew';
 import Edit from './pages/Admin/Films/Edit/Edit';
 import SignUpWithFormik from "./pages/Register/Register"
+import EditUser from './pages/Admin/Dashboard/EditUser';
 export const history = createBrowserHistory();
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
     <Router history={history}>
       <Loading />
       <Switch>
-        <HomeTemplate path="/home" exact Component={Home} />
+        <HomeTemplate path="/" exact Component={Home} />
         <HomeTemplate path="/contact" exact Component={Home} />
         <HomeTemplate path="/news" exact Component={Home} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
@@ -35,12 +36,13 @@ function App() {
         <UserTemplate path="/login" exact Component={Login} />
         <UserTemplate path="/register" exact Component={SignUpWithFormik} />
         <AdminTemplate path="/admin" exact Component={Dashboard} />
+        <AdminTemplate path="/admin/users" exact Component={Dashboard} />
+        <AdminTemplate path="/admin/users/edit/:id" exact Component={EditUser} />
         <AdminTemplate path="/admin/films" exact Component={Films} />
         <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
         <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
         <AdminTemplate path="/admin/films/showtime/:id/:tenphim" exact Component={ShowTime} />
-        <AdminTemplate path="/admin/users" exact Component={Dashboard} />
-        <HomeTemplate path="/" exact Component={Home} />
+        <HomeTemplate path="*" Component={Home} />
       </Switch>
     </Router>
   );

@@ -4,14 +4,14 @@ import { FormOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Highlighter from 'react-highlight-words';
-
+import { history } from '../../../App';
 export default function Dashboard() {
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachNguoiDung());
     }, [])
     const { listUser } = useSelector(state => state.QuanLyNguoiDungReducer);
-    console.log(listUser);
+    //console.log(listUser);
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -112,32 +112,18 @@ export default function Dashboard() {
             render: (text, record, index) => {
                 return <span className='text-danger'>{index + 1}</span>
             },
-            //sortDirections: ['descend'],
+            sortDirections: ['descend'],
         },
         {
             title: 'taiKhoan',
             key: 'taiKhoan',
             dataIndex: 'taiKhoan',
-            // sorter: (a, b) => a.email.length - b.email.length,
-            // sortDirections: ['descend', 'ascend'],
-            // render: (text, record, index) => {
-            //     return <Tag color="green">
-            //         {record?.email}
-            //     </Tag>
-            // },
             ...getColumnSearchProps('taiKhoan')
         },
         {
             title: 'email',
             key: 'email',
             dataIndex: 'email',
-            // sorter: (a, b) => a.email.length - b.email.length,
-            // sortDirections: ['descend', 'ascend'],
-            // render: (text, record, index) => {
-            //     return <Tag color="green">
-            //         {record?.email}
-            //     </Tag>
-            // },
             ...getColumnSearchProps('email')
         },
         {
@@ -168,15 +154,11 @@ export default function Dashboard() {
             render: (text, record, index) => {
                 return <div>
                     <button className="btn mr-2 btn-primary text-red-400" onClick={() => {
-                        // dispatch({
-                        //     type: "OPEN_FORM_EDIT_USER",
-                        //     title: 'Edit User',
-                        //     Component: <EditUserWithFormik />
-                        // })
-                        // dispatch({
-                        //     type: "EDIT_USER",
-                        //     userEdit: record
-                        // })
+                        history.push(`/admin/users/edit/${record.taiKhoan}`)
+                        dispatch({
+                            type: "EDIT_USER",
+                            userEdit: record
+                        })
                     }}>
                         <FormOutlined style={{ fontSize: 17 }} />
                     </button>
@@ -187,7 +169,7 @@ export default function Dashboard() {
                         cancelText="No"
                     >
                         <button className="text-yellow-500">
-                            <DeleteOutlined style={{ fontSize: 17 }}/>
+                            <DeleteOutlined style={{ fontSize: 17 }} />
                         </button>
                     </Popconfirm>,
                 </div>

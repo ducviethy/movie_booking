@@ -7,7 +7,8 @@ if (localStorage.getItem(USER_LOGIN)) {
 const stateDefault = {
     userLogin: user,
     thongTinNguoiDung: {},
-    listUser:[]
+    listUser:[],
+    userEdit:{}
 }
 export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
     switch (action.type) {
@@ -23,6 +24,10 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         }
         case LIST_USER: {
             state.listUser = action.listUser;
+            return { ...state };
+        }
+        case "EDIT_USER": {
+            state.userEdit = action.userEdit;
             return { ...state };
         }
         default:

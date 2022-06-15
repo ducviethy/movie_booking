@@ -11,7 +11,7 @@ export const dangNhapAction = (thongTinDangNhap) => {
                     thongTinDangNhap: result.data.content
                 });
                 //Chuyển hướng đăng nhập về admin
-                history.push("/home");
+                history.push("/admin");
             }
         } catch (error) {
             console.log('error', error)
@@ -58,8 +58,20 @@ export const layDanhSachNguoiDung = () => {
                     listUser: result.data.content
                 })
             }
-            //console.log(result.data.content);
         } catch (error) {
+            console.log('error', error)
+        }
+    }
+}
+export const capNhatThongTinNguoiDung = (userEdit) => {
+    return async (dispatch) => {
+        try {
+            const result = await quanLyNguoiDungService.capNhatThongTinNguoiDung(userEdit)
+            alert("update thành công !")
+            history.push("/admin")
+            dispatch(layDanhSachNguoiDung())
+        } catch (error) {
+            alert("update thất bại !")
             console.log('error', error)
         }
     }

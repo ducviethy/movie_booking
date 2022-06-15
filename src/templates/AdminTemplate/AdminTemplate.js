@@ -4,7 +4,6 @@ import { Redirect, Route } from "react-router";
 import { TOKEN, USER_LOGIN } from "../../util/settings/config";
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
-    DesktopOutlined,
     FileOutlined,
     PlusOutlined,
     UnorderedListOutlined,
@@ -24,7 +23,6 @@ const AdminTemplate = (props) => { //path, exact, Component
     };
     useEffect(() => {
         window.scrollTo(0, 0);
-
     })
     // if (!localStorage.getItem(USER_LOGIN)) {
     //     alert('Bạn không có quyền truy cập vào trang này !')
@@ -45,7 +43,7 @@ const AdminTemplate = (props) => { //path, exact, Component
             <button onClick={() => {
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN);
-                history.push('/home');
+                history.push('/');
                 window.location.reload();
             }} className="ml-3 text-blue-800 absolute top-0">Đăng xuất</button> </Fragment> : ''}
     </Fragment>
@@ -75,7 +73,7 @@ const AdminTemplate = (props) => { //path, exact, Component
                 </Sider>
                 <Layout className="site-layout">
                     <Header className="site-layout-background p-0">
-                        <div className="text-right pr-10 pt-1">{operations}</div>
+                        <div className="text-right pr-12 pt-1">{operations}</div>
                     </Header>
                     <hr />
                     <Content className="pb-4">
@@ -85,7 +83,7 @@ const AdminTemplate = (props) => { //path, exact, Component
                             <Component {...propsRoute} />
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+                    <Footer style={{ textAlign: 'center',padding:"5px 24px"}}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
             </Layout>
         </Fragment>
