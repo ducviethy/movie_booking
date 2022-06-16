@@ -25,7 +25,6 @@ const EditUser = (props) => {
             maLoaiNguoiDung: userEdit.maLoaiNguoiDung,
         },
         onSubmit: (values) => {
-            //console.log({...values,maNhom:"GP01"});
             dispatch(capNhatThongTinNguoiDung({...values,maNhom:"GP01"}))
         }
     })
