@@ -45,6 +45,6 @@ function App() {
         <HomeTemplate path="*" Component={Home} />
       </Switch>
     </Router>
-  );
+  )
 }
 export default App;

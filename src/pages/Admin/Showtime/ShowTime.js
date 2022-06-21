@@ -61,11 +61,11 @@ export default function ShowTime(props) {
     }
     const onOk = (values) => {
         formik.setFieldValue('ngayChieuGioChieu', moment(values).format('DD/MM/YYYY hh:mm:ss'))
-        //console.log('values', moment(values).format('DD/MM/YYYY hh:mm:ss'));
+        console.log('values', moment(values).format('DD/MM/YYYY hh:mm:ss'));
     }
-    const onChangeDate = (values) => {
-        formik.setFieldValue('ngayChieuGioChieu', moment(values).format('DD/MM/YYYY hh:mm:ss'))
-        //console.log('values', moment(values).format('DD/MM/YYYY hh:mm:ss'));
+    const onChangeDate = (value) => {
+        formik.setFieldValue('ngayChieuGioChieu', moment(value).format('DD/MM/YYYY hh:mm:ss'))
+        console.log(value);
     }
     const onchangeInputNumber = (value) => {
         formik.setFieldValue('giaVe', value)

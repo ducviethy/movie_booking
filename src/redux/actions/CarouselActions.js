@@ -12,5 +12,5 @@ export const getCarouselAction = () => {
         }catch (errors) {
             console.log('errors',errors)
         }
-    };
+    }
 }
