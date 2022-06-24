@@ -1,6 +1,6 @@
 import { quanLyPhimService } from "../../services/QuanLyPhimService";
 import { SET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "./types/QuanLyPhimType";
-import { history } from '../../App'
+import { history } from '../../App';
 import { displayLoadingAction, hideLoadingAction } from "./LoadingActions";
 export const layDanhSachPhimAction = (tenPhim = '') => {
     return async (dispatch) => {
@@ -28,7 +28,8 @@ export const themPhimUploadHinhAction = (formData) => {
         try {
             let result = await quanLyPhimService.themPhimUploadHinh(formData);
             alert('Thêm phim thành công!')
-            console.log('result', result.data.content);
+            //console.log('result', result.data.content);
+            history.push('/admin/films');
         } catch (errors) {
             console.log(errors.response?.data)
         }

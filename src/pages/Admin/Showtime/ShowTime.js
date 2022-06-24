@@ -6,6 +6,7 @@ import { quanLyRapService } from '../../../services/QuanLyRapService';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import { quanLyDatVeService } from '../../../services/QuanLyDatVeService';
+import { history } from '../../../App';
 export default function ShowTime(props) {
     const formik = useFormik({
         initialValues: {
@@ -15,12 +16,14 @@ export default function ShowTime(props) {
             giaVe: ''
         },
         onSubmit: async (values) => {
-            //console.log('values', values);
             try {
-                const result = await quanLyDatVeService.taoLichChieu(values);
-                //alert(result.data.content);
+                console.log(values);
+                await quanLyDatVeService.taoLichChieu(values);
+                alert("update thanh cong");
+                history.push('/admin/films');
             } catch (error) {
-                console.log('error', error.response?.data)
+                alert("gia ve tu 75k-200k");
+                console.log('error', error.response?.data);
             }
         }
     })
@@ -52,6 +55,7 @@ export default function ShowTime(props) {
                 ...state,
                 cumRapChieu: result.data.content
             })
+            
         } catch (error) {
             console.log('error', error.response?.data);
         }
@@ -65,7 +69,7 @@ export default function ShowTime(props) {
     }
     const onChangeDate = (value) => {
         formik.setFieldValue('ngayChieuGioChieu', moment(value).format('DD/MM/YYYY hh:mm:ss'))
-        console.log(value);
+        console.log('values', moment(value).format('DD/MM/YYYY hh:mm:ss'));
     }
     const onchangeInputNumber = (value) => {
         formik.setFieldValue('giaVe', value)

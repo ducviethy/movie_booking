@@ -38,7 +38,6 @@ const Edit = (props) => {
       hinhAnh: null
     },
     onSubmit: (values) => {
-      //console.log('values', values);
       values.maNhom = GROUPID;
       //Tạo đối tượng formdata => Đưa giá trị values từ formik vào formdata
       let formData = new FormData();
@@ -51,13 +50,17 @@ const Edit = (props) => {
           }
         }
       }
+      formData.set('ngayKhoiChieu', moment(formData.get('ngayKhoiChieu')).format('DD/MM/YYYY'));
+      //console.log('values', values);
       //Cập nhật phim upload hình
       dispatch(capNhatPhimUploadAction(formData));
     }
   })
-  const handleChangeDatePicker = (value) => {
+  const onChangeDate = (value) => {
+    //console.log('values', value);
     let ngayKhoiChieu = moment(value);
     formik.setFieldValue('ngayKhoiChieu', ngayKhoiChieu);
+    //console.log('values', formik.values.ngayKhoiChieu);
   }
   const handleChangeSwitch = (name) => {
     return (value) => {
@@ -121,7 +124,7 @@ const Edit = (props) => {
           <Input name="moTa" onChange={formik.handleChange} value={formik.values.moTa} />
         </Form.Item>
         <Form.Item label="Ngày khởi chiếu">
-          <DatePicker onChange={handleChangeDatePicker} format="DD/MM/YYYY" value={moment(formik.values.ngayKhoiChieu)} />
+          <DatePicker onChange={onChangeDate} format="DD/MM/YYYY" value={moment(formik.values.ngayKhoiChieu)} />
         </Form.Item>
         <Form.Item label="Đang chiếu">
           <Switch name="dangChieu" onChange={handleChangeSwitch('dangChieu')} checked={formik.values.dangChieu} />
